@@ -1,0 +1,35 @@
+body{
+	font-family: 'Bree Serif', serif;
+	background-image:url(img/fondo.jpg);
+}
+#table{
+	border-radius:15px;
+	behavior: url(PIE.php);
+	border:5px solid rgb(230,255,83);
+}
+#caja{
+	background:rgb(221,221,221);
+	border:3px solid rgb(200,200,200);
+}
+.boton{
+	width:100px;
+	height:25px;
+	cursor:pointer;
+	background:rgb(221,221,221);
+	border:3px solid rgb(200,200,200);
+}
+.boton:hover{
+	background:rgb(201,201,201);
+}
+
+
+#aviso{
+	display:none;
+	width:200px;
+	height:25px;
+	background:rgb(192,255,187);
+	border:3px solid rgb(92,255,79);
+}
+#sombra{
+
+}
