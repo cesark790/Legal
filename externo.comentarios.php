@@ -96,13 +96,15 @@ if($n==1){
 	})
 
 	$('#aceptar').click(function(){
-		if($("#fecha_evento").val()=="" && $() )
+		if($("#fecha_evento").val() == "" || $('#evento').val() == "" ){
+			alert("Llenar todos los campos");
+		}else{
 		$('#aceptar,#cancelar,#tabla_comentarios').hide(200);
 		$.ajax({
 			url : 'captura.insertar_comentario.inc.php',
 			cache : false ,
 			type : 'POST',
-			data : 'id=<? echo $id;?>&observacion=' + $('#seguimiento').val() ,
+			data : 'c=1&id=<? echo $id;?>&observacion=' + $('#seguimiento').val() + '&fecha_evento=' + $('#fecha_evento').val() + '&evento=' + $('#evento').val() ,
 			beforeSend : function(){
 				$('#coment').html("Cargando...");
 				$('#datos').empty();
@@ -116,7 +118,7 @@ if($n==1){
 
 		})
 
-
+	}
 	})
 
 
