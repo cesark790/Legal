@@ -8,6 +8,13 @@ include("top.php");
 if($n==1){
 ?>
 <link rel="stylesheet" type="text/css" href="css/nueva.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/sunny/jquery-ui-1.8.17.custom.css">
+	<script type="text/javascript" src="js/jquery-ui-timepicker-addon.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui-timepicker-addon.css">
+	<script type="text/javascript" src="js/jquery-ui-sliderAccess.js"></script>
+
 <div style="width:99%; height:98%; border:4px solid;border-radius:15px;">
 	<table width="100%" border="0" cellpading="0" cellspacing="0">
 	<tr style="background:black">
@@ -83,7 +90,7 @@ if($n==1){
 </div>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('#fecha_evento').datepicker();
+		$('#fecha_evento').datetimepicker();
 		$('#cerrar_comentarios').click(function(){
 			$('#coment').remove();				
 		});
