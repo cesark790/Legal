@@ -91,7 +91,7 @@ function ver(numero,empresa){
 		url : 'control.buscar_resultado.php',
 		type : 'POST',
 		cache : false ,
-		data : 'r=1&no_nomina=' + numero + '&demandado=' + empresa ,
+		data : 'r=1&id_demanda=' + numero + '&demandado=' + empresa ,
 		beforeSend : function(){
 			$('#tabla_datos').html('<br><br><br> Cargando..');
 		},

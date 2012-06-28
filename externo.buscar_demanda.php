@@ -27,7 +27,7 @@ if(isset($_GET['close']))
 body{
 	background-image: url(img/fondo.jpg);
 	background-repeat: no-repeat;
-	behavior: url(PIE.php);
+	background-attachment: fixed;
 }
 </style>
 <body>
@@ -77,8 +77,6 @@ body{
 					?>
 				</select>
 			</td>
-			<td align="right" width="20%"> No. Nomina : </td>
-			<td align="left" width="10%"><input style="text-align:center;" type="text" name="no_nomina" id="no_nomina" size="5"></td>
 		
 			<td width="10%"></td>
 		</tr>

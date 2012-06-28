@@ -59,7 +59,7 @@ function ver(numero,empresa){
 		url : 'captura.buscar_resultado.php',
 		type : 'POST',
 		cache : false ,
-		data : 'no_nomina=' + numero + '&demandado=' + empresa ,
+		data : 'id_demanda=' + numero + '&demandado=' + empresa ,
 		beforeSend : function(){
 			$('#tabla_datos').html('<br><br><br> Cargando..');
 		},

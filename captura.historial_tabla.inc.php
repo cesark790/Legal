@@ -17,7 +17,7 @@ include('top.php');
 if(!(isset($filtro))){
 	$filtro="1";
 }
-$sql_datos=mysql_query("SELECT id_demanda,id_demandado,no_nomina, fecha_inicio, fecha_cierre, abogado_externo, abogado_ci,id_ultima_observacion, empresa, gerente,proceso, actor, demandado, expediente, id_estado, estado, id_entidad, entidad, observacion, resolucion, pago FROM vista_legal_principal WHERE id_estatus = '1' and id_estatus_proceso = '$filtro'  ORDER BY fecha_inicio DESC LIMIT 0,10");
+$sql_datos=mysql_query("SELECT id_demanda,id_demandado,no_nomina, fecha_inicio, fecha_cierre, abogado_externo, abogado_ci,id_ultima_observacion, empresa, gerente,proceso, actor, demandado, expediente, id_estado, estado, id_entidad, entidad, observacion, resolucion, pago FROM vista_legal_principal WHERE id_estatus = '1' and id_estatus_proceso = '$filtro'  ORDER BY id_demanda DESC LIMIT 0,10");
 
 if($filtro==1){
 ?>
@@ -41,12 +41,12 @@ if($filtro==1){
 		<tr height="10px" align="center">
 			<td><? echo $reg['fecha_inicio']; ?></td>
 			<td><? echo $reg['no_nomina']; ?></td>
-			<td><? echo $reg['actor']; ?></td>
-			<td><? echo $reg['demandado']; ?></td>
-			<td><? echo $reg['abogado_ci']; ?></td>
-			<td style="cursor:pointer;" onclick="comentarios(<?echo $reg['id_demanda']; ?>)"><? echo recortar($reg['observacion']); ?></td>
+			<td><? echo utf8_encode($reg['actor']); ?></td>
+			<td><? echo utf8_encode($reg['demandado']); ?></td>
+			<td><? echo utf8_encode($reg['abogado_ci']); ?></td>
+			<td style="cursor:pointer;" onclick="comentarios(<?echo $reg['id_demanda']; ?>)"><? echo utf8_encode(recortar($reg['observacion'])); ?></td>
 			<td>
-				<img onclick="ver(<?echo $reg['no_nomina']; ?>,<?echo $reg['id_demandado']; ?>)" align="center" style="cursor:pointer;" alt="Ver" src="img/ver.png" width="25" height="25"></td>
+				<img onclick="ver(<?echo $reg['id_demanda']; ?>,<?echo $reg['id_demandado']; ?>)" align="center" style="cursor:pointer;" alt="Ver" src="img/ver.png" width="25" height="25"></td>
 		</tr>
 		<?
 	}
@@ -80,15 +80,15 @@ else{
 	<?
 	while($reg=mysql_fetch_array($sql_datos)){
 		?>
-		<tr align="center">
+		<tr height="10px" align="center">
 			<td><? echo $reg['fecha_inicio']; ?></td>
 			<td><? echo $reg['no_nomina']; ?></td>
-			<td><? echo $reg['actor']; ?></td>
-			<td><? echo $reg['demandado']; ?></td>
-			<td><? echo $reg['abogado_ci']; ?></td>
-			<td style="cursor:pointer;" onclick="comentarios(<?echo $reg['id_demanda']; ?>)"><? echo recortar($reg['observacion']); ?></td>
+			<td><? echo utf8_encode($reg['actor']); ?></td>
+			<td><? echo utf8_encode($reg['demandado']); ?></td>
+			<td><? echo utf8_encode($reg['abogado_ci']); ?></td>
+			<td style="cursor:pointer;" onclick="comentarios(<?echo $reg['id_demanda']; ?>)"><? echo utf8_encode(recortar($reg['observacion'])); ?></td>
 			<td>
-				<img onclick="ver(<?echo $reg['no_nomina']; ?>,<?echo $reg['id_demandado']; ?>)" align="center" style="cursor:pointer;" alt="Ver" src="img/ver.png" width="25" height="25"></td>
+				<img onclick="ver(<?echo $reg['id_demanda']; ?>,<?echo $reg['id_demandado']; ?>)" align="center" style="cursor:pointer;" alt="Ver" src="img/ver.png" width="25" height="25"></td>
 		</tr>
 		<?
 	}

@@ -7,22 +7,18 @@ error_reporting(0);
 	$sql_estado=mysql_query("SELECT id_estado,estado FROM legal_estados");
 
 ?>
+<script language=""="JavaScript">
+    function conMayusculas(field) {
+            field.value = field.value.toUpperCase()
+}
+</script>
 <div style="background:rgb(252,252,252);border:3px solid black;">
 <table cellpadding="0" cellspacing="0" align="center" width="80%" border="0">
 		<tr height="50px" >
 	
 		<td align="right" width="15%"><strong>Demandado :</strong></td>
 		<td align="left" width="25%">
-			<select style="margin:5px 15px;" id="demandado" name="id_demandado">
-					<option value=""></option>
-						<?
-					while($reg=mysql_fetch_array($sql_demandado)){
-						?>
-					<option value="<?echo $reg['id_demandado'];?>"><?echo $reg['empresa'];?></option>
-						<?
-					}
-					?>
-			</select>
+			<input style="margin:5px 15px;" name="demandado" id="demandado" onChange="conMayusculas(this)" size="25">
 		</td>
 		</td>
 			<td colspan="2" align="right" width="60%"><strong style="margin:auto 25px;">
@@ -35,9 +31,7 @@ error_reporting(0);
 		<td align="left" width="10%">
 			<input style="margin:5px 15px;" size="10" name="no_nomina" id="no_nomina">
 			<td width="75%" colspan="4">
-	<div style="display:none;" id="nombre" align="center	">
-		
-	</div>
+	<strong>Actor:</strong>:<input type="text" name="actor" id="actor" size="35" onChange="conMayusculas(this)">
 </td>
 	</tr>
 	<tr height="50px" >
@@ -48,7 +42,7 @@ error_reporting(0);
 						<?
 					while($reg=mysql_fetch_array($sql_gerente)){
 						?>
-					<option value="<?echo $reg['id_gerente'];?>"><?echo $reg['gerente'];?></option>
+					<option value="<?echo $reg['id_gerente'];?>"><?echo utf8_encode($reg['gerente']);?></option>
 						<?
 					}
 					?>
@@ -60,11 +54,11 @@ error_reporting(0);
 	<tr height="50px" >
 		<td align="right" width="15%"><strong>Junta :</strong></td>
 		<td align="left" width="25%">
-			<input style="margin:5px 15px;" id="junta" type="text" size="22" name="junta">
+			<input style="margin:5px 15px;" onChange="conMayusculas(this)" id="junta" type="text" size="22" name="junta">
 		</td>
 		<td align="right" width="15%"><strong>Expediente :</strong></td>
 		<td align="left" width="25%">
-					<input style="margin:5px 15px;"  type="text" name="expediente" id="expediente">
+					<input style="margin:5px 15px;"  type="text" onChange="conMayusculas(this)" name="expediente" id="expediente">
 			</select>
 		</td>
 		<td width="20%"></td>
@@ -78,15 +72,15 @@ error_reporting(0);
 						<?
 					while($reg=mysql_fetch_array($sql_estado)){
 						?>
-					<option value="<?echo $reg['id_estado'];?>"><?echo $reg['estado'];?></option>
+					<option value="<?echo $reg['id_estado'];?>"><?echo utf8_encode($reg['estado']);?></option>
 						<?
 					}
 					?>
 			</select>
 		</td>
-		<td align="right" width="25%"><strong>Entidad Federativa :</strong></td>
-		<td align="left" width="25%">
-			<select style="margin:5px 15px;" id="entidad" name="id_entidad">
+		<td colspan="3"  width="25%"><strong>E.Federativa :</strong>
+	
+			<select style="margin:5px 15px; width:120px" id="entidad" name="id_entidad">
 			</select>
 		</td>
 		<td width="20%"></td>
@@ -168,7 +162,7 @@ error_reporting(0);
 				url : 'captura.insertar_demanda.php',
 				type : 'POST',
 				cache : false , 
-				data : 'junta=' + $('#junta').val() + '&gerente=' + $('#gerente').val() + '&actor=' + actor  + '&estado=' + $('#estado').val() + '&entidad=' + $('#entidad').val() + '&demandado=' + $('#demandado').val() + '&observaciones=' + $('#observacion').val() + "&expediente=" + $('#expediente').val() + "&no_nomina=" + $('#no_nomina').val() ,
+				data : 'junta=' + $('#junta').val() + '&gerente=' + $('#gerente').val() + '&actor=' + $('#actor').val()  + '&estado=' + $('#estado').val() + '&entidad=' + $('#entidad').val() + '&demandado=' + $('#demandado').val() + '&observaciones=' + $('#observacion').val() + "&expediente=" + $('#expediente').val() + "&no_nomina=" + $('#no_nomina').val() ,
 				beforeSend : function(){
 				 var x=0;
 				$('#suceso').html('<p>Cargando..</p>');

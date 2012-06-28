@@ -25,6 +25,7 @@ if(isset($_GET['close']))
 body{
 	background-image: url(img/fondo.jpg);
 	background-repeat: no-repeat;
+	background-attachment: fixed;
 	behavior: url(PIE.php);
 }
 </style>

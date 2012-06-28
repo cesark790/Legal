@@ -3,7 +3,7 @@ error_reporting(0);
 include("conexion.php");
 include("top.php");
 date_default_timezone_set('America/Mexico_City');
-$sql_datos = mysql_query("SELECT id_demanda, no_nomina, fecha_inicio, fecha_cierre,id_abogado_asignado, abogado_externo,  abogado_ci, fecha_asignacion, id_empresa, empresa, gerente, proceso, actor, demandado, expediente,  fecha_junta, comentarios, estado, entidad, observacion, resolucion, id_estatus_proceso,pago FROM vista_legal_principal WHERE id_demandado = '$demandado' and  no_nomina = '$no_nomina' or expediente = '$expediente'");
+$sql_datos = mysql_query("SELECT id_demanda, no_nomina, fecha_inicio, fecha_cierre,id_abogado_asignado, abogado_externo,  abogado_ci, fecha_asignacion, id_empresa, empresa, gerente, proceso, actor, demandado, expediente,  fecha_junta, comentarios, estado, entidad, observacion, resolucion, id_estatus_proceso,pago FROM vista_legal_principal WHERE id_demanda = '$id_demanda' or expediente = '$expediente'");
 $num=mysql_num_rows($sql_datos);
 if ($num == "0") {
 	echo "<br><br><br><div style='height:120px; valign='bottom'>No se encontro el registro buscado.</div>";

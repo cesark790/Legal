@@ -9,7 +9,7 @@
 <script type="text/javascript">
 
 	$('#cerrar').click(function(){
-		$('#nombre').css("display","none");
+		$('#actor').val("");
 		$('#no_nomina').val("");
 		$('#junta').val("");
 		$('#demandado').val("");

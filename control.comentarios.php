@@ -52,7 +52,7 @@ if($n==1){
 		?>
 		<tr align="center">
 			<td align="center" style="border:1px solid;"  width="25%" align="left"><? echo $reg['fecha_captura'];?></td>
-			<td align="center" style="border:1px solid"  width="55%" align="left"><? echo $reg['observacion'];?></td>
+			<td align="center" style="border:1px solid"  width="55%" align="left"><? echo utf8_encode($reg['observacion']);?></td>
 			<td align="center" style="border:1px solid"  width="10%" align="left"><? echo $reg['capturo'];?></td>
 		</tr>
 		<?

@@ -19,7 +19,7 @@ if(!(isset($filtro))){
 
 
 if($filtro==1){
-$sql_datos=mysql_query("SELECT id_demanda,id_demandado,no_nomina, fecha_inicio, fecha_cierre, abogado_externo, abogado_ci,id_ultima_observacion, empresa, gerente,proceso, actor, demandado, expediente, id_estado, estado, id_entidad, entidad, observacion, fecha_junta,resolucion, pago FROM vista_legal_principal WHERE id_estatus = '1' and id_estatus_proceso = '$filtro'  ORDER BY fecha_inicio ");
+$sql_datos=mysql_query("SELECT id_demanda,id_demandado,no_nomina, fecha_inicio, fecha_cierre, abogado_externo, abogado_ci,id_ultima_observacion, empresa, gerente,proceso, actor, demandado, expediente, id_estado, estado, id_entidad, entidad, observacion, junta,resolucion, pago FROM vista_legal_principal WHERE id_estatus = '1' and id_estatus_proceso = '$filtro'  ORDER BY fecha_inicio ");
 	?>
 <style type="text/css">
 .letra{
@@ -53,10 +53,10 @@ $sql_datos=mysql_query("SELECT id_demanda,id_demandado,no_nomina, fecha_inicio, 
 			<td><? echo $reg['actor']; ?></td>
 			<td><? echo $reg['demandado']; ?></td>
 			<td><? echo $reg['abogado_externo']; ?></td>
-			<td style="cursor:pointer;" onclick="comentarios(<?echo $reg['id_demanda']; ?>)"><? echo recortar($reg['observacion']); ?></td>
-			<td style="cursor:pointer;" onclick="junta(<?echo $reg['id_demanda']; ?>)"><? echo recortar_junta($reg['fecha_junta']); ?></td>
+			<td title="<? echo utf8_encode($reg['observacion']);?>" style="cursor:pointer;" onclick="comentarios(<?echo $reg['id_demanda']; ?>)"><? echo utf8_encode(recortar($reg['observacion'])); ?></td>
+			<td style="cursor:pointer;" onclick="junta(<?echo $reg['id_demanda']; ?>)"><? echo recortar_junta($reg['junta']); ?></td>
 			<td>
-				<img onclick="ver(<?echo $reg['no_nomina']; ?>,<?echo $reg['id_demandado']; ?>)" align="center" style="cursor:pointer;" alt="Ver" src="img/ver.png" width="25" height="25"></td>
+				<img onclick="ver(<?echo $reg['id_demanda']; ?>,<?echo $reg['id_demandado']; ?>)" align="center" style="cursor:pointer;" alt="Ver" src="img/ver.png" width="25" height="25"></td>
 		</tr>
 		<?
 	}
@@ -84,7 +84,7 @@ $sql=mysql_query("SELECT id_demanda,id_demandado,no_nomina, fecha_inicio, fecha_
 </style>
 
 	<table id="tabla" class="letra" align="center" width="100%" cellspacing="0" border="1" align="center" >
-	<tr>
+	<tr>	
 		<th class="th" width="10%">Fecha de cierre</th>
 		<th class="th" width="10%">Estado</th>
 		<th class="th" width="5%">Expediente</th>
@@ -98,17 +98,17 @@ $sql=mysql_query("SELECT id_demanda,id_demandado,no_nomina, fecha_inicio, fecha_
 	<?
 	while($reg=mysql_fetch_array($sql)){
 		?>
-		<tr align="center">
+		<tr height="10px" align="center">
 			<td><? echo $reg['fecha_inicio']; ?></td>
 			<td><? echo $reg['estado']; ?></td>
 			<td><? echo $reg['expediente']; ?></td>
 			<td><? echo $reg['actor']; ?></td>
 			<td><? echo $reg['demandado']; ?></td>
 			<td><? echo $reg['abogado_externo']; ?></td>
-			<td style="cursor:pointer;" onclick="comentarios(<?echo $reg['id_demanda']; ?>)"><? echo recortar($reg['observacion']); ?></td>
-			<td style="cursor:pointer;" onclick="junta(<?echo $reg['id_demanda']; ?>)"><? echo recortar_junta($reg['fecha_junta']); ?></td>
+			<td title="<? echo utf8_encode($reg['observacion']);?>" style="cursor:pointer;" onclick="comentarios(<?echo $reg['id_demanda']; ?>)"><? echo utf8_encode(recortar($reg['observacion'])); ?></td>
+			<td style="cursor:pointer;" onclick="junta(<?echo $reg['id_demanda']; ?>)"><? echo recortar_junta($reg['junta']); ?></td>
 			<td>
-				<img onclick="ver(<?echo $reg['no_nomina']; ?>,<?echo $reg['id_demandado']; ?>)" align="center" style="cursor:pointer;" alt="Ver" src="img/ver.png" width="25" height="25"></td>
+				<img onclick="ver(<?echo $reg['id_demanda']; ?>,<?echo $reg['id_demandado']; ?>)" align="center" style="cursor:pointer;" alt="Ver" src="img/ver.png" width="25" height="25"></td>
 		</tr>
 		<?
 	}
@@ -148,17 +148,17 @@ var filtro = 2;
 	<?
 	while($reg=mysql_fetch_array($sql)){
 		?>
-		<tr align="center">
+		<tr height="10px" align="center">
 			<td><? echo $reg['fecha_inicio']; ?></td>
 			<td><? echo $reg['estado']; ?></td>
 			<td><? echo $reg['expediente']; ?></td>
 			<td><? echo $reg['actor']; ?></td>
 			<td><? echo $reg['demandado']; ?></td>
 			<td><? echo $reg['abogado_externo']; ?></td>
-			<td style="cursor:pointer;" onclick="comentarios(<?echo $reg['id_demanda']; ?>)"><? echo recortar($reg['observacion']); ?></td>
-			<td style="cursor:pointer;" onclick="junta(<?echo $reg['id_demanda']; ?>)"><? echo recortar_junta($reg['fecha_junta']); ?></td>
+			<td title="<? echo utf8_encode($reg['observacion']);?>" style="cursor:pointer;" onclick="comentarios(<?echo $reg['id_demanda']; ?>)"><? echo utf8_encode(recortar($reg['observacion'])); ?></td>
+			<td style="cursor:pointer;" onclick="junta(<?echo $reg['id_demanda']; ?>)"><? echo recortar_junta($reg['junta']); ?></td>
 			<td>
-				<img onclick="ver(<?echo $reg['no_nomina']; ?>,<?echo $reg['id_demandado']; ?>)" align="center" style="cursor:pointer;" alt="Ver" src="img/ver.png" width="25" height="25"></td>
+				<img onclick="ver(<?echo $reg['id_demanda']; ?>,<?echo $reg['id_demandado']; ?>)" align="center" style="cursor:pointer;" alt="Ver" src="img/ver.png" width="25" height="25"></td>
 		</tr>
 		<?
 	}

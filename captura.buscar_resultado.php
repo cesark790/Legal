@@ -2,7 +2,7 @@
 error_reporting(0);
 include("conexion.php");
 include("top.php");
-$sql_datos = mysql_query("SELECT id_demanda, no_nomina, fecha_inicio, fecha_cierre, abogado_externo,  abogado_ci, fecha_asignacion, id_empresa, empresa, gerente, proceso, actor, demandado, expediente,  fecha_junta, comentarios, estado, entidad, observacion, resolucion FROM vista_legal_principal WHERE id_demandado = '$demandado' and  no_nomina = '$no_nomina' or expediente = '$expediente'");
+$sql_datos = mysql_query("SELECT id_demanda, no_nomina, fecha_inicio, fecha_cierre, abogado_externo,  abogado_ci, fecha_asignacion, id_empresa, empresa, gerente, proceso, actor, demandado, expediente,  fecha_junta, comentarios, estado, entidad, observacion, resolucion FROM vista_legal_principal WHERE id_demanda = '$id_demanda'  or expediente = '$expediente'");
 $num=mysql_num_rows($sql_datos);
 if ($num == "0") {
 	echo "<br><br><br><div style='height:120px; valign='bottom'>No se encontro el registro buscado.</div>";
@@ -83,9 +83,9 @@ while ($reg=mysql_fetch_array($sql_datos)) {
 
 	</tr>
 		<tr height="50px">
-		<td width="10%" align="right"> Ultima Junta:</td>
+		<td width="10%" align="right"> Junta:</td>
 		<td width="10%">
-			<input size="30" type="text" style="text-align:center;"  value="<? echo $reg['fecha_junta'];?>" readonly="readonly">
+			<input size="30" type="text" style="text-align:center;"  value="<? echo $reg['junta'];?>" readonly="readonly">
 		</td>
 		<td width="15%" align="right">Resulucion : </td>
 		<td width="10%"><input size="30"  style="text-align:center;" type="text" readonly="readonly" value="<? echo $reg['resulucion'];?>"></td> 
