@@ -4,7 +4,8 @@ include("conexion.php");
 include('top.php');
 session_start();
 $id_usuario = $_SESSION['id_usuario'];
-$sql_datos=mysql_query("SELECT id_demanda,id_demandado,no_nomina, fecha_inicio, fecha_cierre, abogado_externo, abogado_ci,id_ultima_observacion, empresa, gerente,proceso, actor, demandado, expediente, id_estado, estado, id_entidad, entidad, observacion, resolucion, pago, fecha_junta FROM vista_legal_principal WHERE id_estatus = '1' and id_estatus_proceso = '2' and id_abogado_asignado = '$id_usuario'  ORDER BY fecha_inicio DESC ");
+$sql_datos=mysql_query("SELECT id_demanda,id_demandado,no_nomina, fecha_inicio, fecha_cierre, abogado_externo, abogado_ci,id_ultima_observacion, empresa, gerente,proceso, actor, demandados, expediente, id_estado, estado, id_entidad, entidad, observacion, resolucion, pago, junta FROM vista_legal_principal WHERE id_estatus = '1' and id_estatus_proceso = '2' and id_abogado_asignado = '$id_usuario'  ORDER BY fecha_inicio DESC ");
+
 
 ?>
 
@@ -23,14 +24,14 @@ $sql_datos=mysql_query("SELECT id_demanda,id_demandado,no_nomina, fecha_inicio, 
 	while($reg=mysql_fetch_array($sql_datos)){
 		?>
 		<tr height="10px" align="center">
-			<td><? echo $reg['fecha_inicio']; ?></td>
-			<td><? echo $reg['actor']; ?></td>
-			<td><? echo $reg['demandado']; ?></td>
-			<td><? echo $reg['abogado_ci']; ?></td>
-			<td style="cursor:pointer;" onclick="junta(<?echo $reg['id_demanda']; ?>)"><? echo recortar($reg['fecha_junta']); ?></td>
-			<td style="cursor:pointer;" onclick="comentarios(<?echo $reg['id_demanda']; ?>)"><? echo recortar($reg['observacion']); ?></td>
+			<td><? echo utf8_encode($reg['fecha_inicio']); ?></td>
+			<td><? echo utf8_encode($reg['actor']); ?></td>
+			<td title="<? echo $reg['demandados'];?>"><? echo recortar(utf8_encode($reg['demandados'])); ?></td>
+			<td><? echo utf8_encode($reg['abogado_ci']); ?></td>
+			<td><? echo utf8_encode(recortar($reg['junta'])); ?></td>
+			<td title="<? echo utf8_encode($reg['observacion']);?>" style="cursor:pointer;" onclick="comentarios(<?echo $reg['id_demanda']; ?>)"><? echo utf8_encode(recortar($reg['observacion'])); ?></td>
 			<td>
-				<img onclick="ver(<?echo $reg['no_nomina']; ?>,<?echo $reg['id_demandado']; ?>)" align="center" style="cursor:pointer;" alt="Ver" title="Mas informacion" src="img/ver.png" width="25" height="25">
+				<img onclick="ver(<?echo $reg['id_demanda']; ?>,<?echo $reg['id_demandado']; ?>)" align="center" style="cursor:pointer;" alt="Ver" title="Mas informacion" src="img/ver.png" width="25" height="25">
 				<img onclick="gasto(<?echo $reg['id_demanda']; ?>)" align="center" style="cursor:pointer;" alt="Agregar Gasto" title="Ver total de gastos" src="img/gasto.png" width="25" height="25">
 			</td>
 		</tr>
@@ -49,7 +50,7 @@ var props = {
 		alternate_rows: true,
 		rows_counter: true,
 		btn_reset: true,
-		btn_reset_text: "Monstrar todo",
+		btn_reset_text: "Mostrar todo",
 		loader: true,		 
         loader_html: '<h4 style="color:red;">Cargando, por favor espere...</h4>',
 		status_bar: true,

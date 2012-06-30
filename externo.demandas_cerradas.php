@@ -74,7 +74,7 @@ function ver(numero,empresa){
 		url : 'externo.buscar_resultado_cerradas.php',
 		type : 'POST',
 		cache : false ,
-		data : 'no_nomina=' + numero + '&demandado=' + empresa ,
+		data : 'id_demanda=' + numero + '&demandado=' + empresa ,
 		beforeSend : function(){
 			$('#ver_detalle').html('<br><br><br> Cargando..');
 		},

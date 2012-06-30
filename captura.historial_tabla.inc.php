@@ -110,7 +110,7 @@ var props = {
 		alternate_rows: true,
 		rows_counter: true,
 		btn_reset: true,
-		btn_reset_text: "Monstrar todo",
+		btn_reset_text: "Mostrar todo",
 		loader: true,		 
         loader_html: '<h4 style="color:red;">Cargando, por favor espere...</h4>',
 		status_bar: true,

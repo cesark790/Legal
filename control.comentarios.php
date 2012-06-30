@@ -1,3 +1,10 @@
+<link rel="stylesheet" type="text/css" href="css/nueva.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/sunny/jquery-ui-1.8.17.custom.css">
+	<script type="text/javascript" src="js/jquery-ui-timepicker-addon.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui-timepicker-addon.css">
+	<script type="text/javascript" src="js/jquery-ui-sliderAccess.js"></script>
 <?
 $n=$_POST['n'];
 $id=$_POST['id'];
@@ -25,6 +32,14 @@ if($n==1){
 		<tr>
 			<td align="center" colspan="3">
 				<textarea style="width:90%" rows="10" name="seguimiento" id="seguimiento"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3" align="center">
+				Fecha del Siguiente Evento :
+				<input type="text" style="text-align:center" size="18" name="fecha_evento" id="fecha_evento"> 
+				Evento : 
+				<input type="text" size="80" name="evento" id="evento" style="text-align:center;">
 			</td>
 		</tr>
 		
@@ -65,6 +80,7 @@ if($n==1){
 </div>
 <script type="text/javascript">
 	$(document).ready(function(){
+			$('#fecha_evento').datetimepicker();
 		$('#cerrar_comentarios').click(function(){
 			$('#tabla_datos').empty();
 			$('#tabla_datos').load('control.demandas_tabla.inc.php',function(data){
@@ -82,12 +98,15 @@ if($n==1){
 	})
 
 	$('#aceptar').click(function(){
+		if($("#fecha_evento").val() == "" || $('#evento').val() == "" ){
+			alert("Llenar todos los campos");
+		}else{
 		$('#aceptar,#cancelar,#tabla_comentarios').hide(200);
 		$.ajax({
-			url : 'control.insertar_comentario.inc.php',
+			url : 'captura.insertar_comentario.inc.php',
 			cache : false ,
 			type : 'POST',
-			data : 'id=<? echo $id;?>&observacion=' + $('#seguimiento').val() ,
+			data : 'c=1&id=<? echo $id;?>&observacion=' + $('#seguimiento').val() + '&fecha_evento=' + $('#fecha_evento').val() + '&evento=' + $('#evento').val() ,
 			beforeSend : function(){
 				$('#coment').html("Cargando...");
 				$('#tabla_datos').empty();
@@ -101,7 +120,7 @@ if($n==1){
 
 		})
 
-
+	}	
 	})
 
 
@@ -130,6 +149,14 @@ if($n==1){
 		<tr>
 			<td align="center" colspan="3">
 				<textarea style="width:90%" rows="10" name="seguimiento" id="seguimiento"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3" align="center">
+				Fecha del Siguiente Evento :
+				<input type="text" style="text-align:center" size="18" name="fecha_evento" id="fecha_evento"> 
+				Evento : 
+				<input type="text" size="80" name="evento" id="evento" style="text-align:center;">
 			</td>
 		</tr>
 		
@@ -192,6 +219,7 @@ function recargar(){
 			
 }
 	$(document).ready(function(){
+			$('#fecha_evento').datetimepicker();
 		$('#cerrar_comentarios').click(function(){
 			$('#coment').remove();
 		$.ajax({
@@ -222,12 +250,15 @@ function recargar(){
 	})
 
 	$('#aceptar').click(function(){
+		if($("#fecha_evento").val() == "" || $('#evento').val() == "" ){
+			alert("Llenar todos los campos");
+		}else{
 		$('#aceptar,#cancelar,#tabla_comentarios').hide(200);
 		$.ajax({
 			url : 'captura.insertar_comentario.inc.php',
 			cache : false ,
 			type : 'POST',
-			data : 'id=<? echo $id;?>&observacion=' + $('#seguimiento').val() ,
+			data : 'c=1&id=<? echo $id;?>&observacion=' + $('#seguimiento').val() + '&fecha_evento=' + $('#fecha_evento').val() + '&evento=' + $('#evento').val() ,
 			beforeSend : function(){
 				$('#coment').html("Cargando...");
 				$('#tabla_datos').empty();
@@ -240,7 +271,7 @@ function recargar(){
 
 		})
 
-
+	}
 	})
 
 
@@ -270,6 +301,14 @@ function recargar(){
 		<tr>
 			<td align="center" colspan="3">
 				<textarea style="width:90%" rows="10" name="seguimiento" id="seguimiento"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3" align="center">
+				Fecha del Siguiente Evento :
+				<input type="text" style="text-align:center" size="18" name="fecha_evento" id="fecha_evento"> 
+				Evento : 
+				<input type="text" size="80" name="evento" id="evento" style="text-align:center;">
 			</td>
 		</tr>
 		
@@ -334,6 +373,7 @@ function recargar(){
 
 
 	$(document).ready(function(){
+			$('#fecha_evento').datetimepicker();
 		$('#cerrar_comentarios').click(function(){
 		$('#coment').remove();
 
@@ -367,12 +407,15 @@ function recargar(){
 	})
 
 	$('#aceptar').click(function(){
+		if($("#fecha_evento").val() == "" || $('#evento').val() == "" ){
+			alert("Llenar todos los campos");
+		}else{
 		$('#aceptar,#cancelar,#tabla_comentarios').hide(200);
 		$.ajax({
-			url : 'control.insertar_comentario.inc.php',
+			url : 'captura.insertar_comentario.inc.php',
 			cache : false ,
 			type : 'POST',
-			data : 'id=<? echo $id;?>&observacion=' + $('#seguimiento').val() ,
+			data : 'c=1&id=<? echo $id;?>&observacion=' + $('#seguimiento').val() + '&fecha_evento=' + $('#fecha_evento').val() + '&evento=' + $('#evento').val(),
 			beforeSend : function(){
 				$('#coment').html("Cargando...");
 				$('#tabla_datos').empty();
@@ -384,7 +427,7 @@ function recargar(){
 
 		})
 
-
+	}
 	})
 
 
@@ -417,6 +460,14 @@ function recargar(){
 				<textarea style="width:90%" rows="10" name="seguimiento" id="seguimiento"></textarea>
 			</td>
 		</tr>
+		<tr>
+			<td colspan="3" align="center">
+				Fecha del Siguiente Evento :
+				<input type="text" style="text-align:center" size="18" name="fecha_evento" id="fecha_evento"> 
+				Evento : 
+				<input type="text" size="80" name="evento" id="evento" style="text-align:center;">
+			</td>
+		</tr>
 		
 				<tr>
 			<td align="center" width="33%">
@@ -442,7 +493,7 @@ function recargar(){
 		?>
 		<tr align="center">
 			<td align="center" style="border:1px solid;"  width="25%" align="left"><? echo $reg['fecha_captura'];?></td>
-			<td align="center" style="border:1px solid"  width="55%" align="left"><? echo $reg['observacion'];?></td>
+			<td align="center" style="border:1px solid"  width="55%" align="left"><? echo utf8_encode($reg['observacion']);?></td>
 			<td align="center" style="border:1px solid"  width="10%" align="left"><? echo $reg['capturo'];?></td>
 		</tr>
 		<?
@@ -455,6 +506,7 @@ function recargar(){
 </div>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$('#fecha_evento').datetimepicker();
 		$('#cerrar_comentarios').click(function(){
 			$('#coment').remove();
 			$('#coment').empty();
@@ -470,12 +522,15 @@ function recargar(){
 	})
 
 	$('#aceptar').click(function(){
+		if($("#fecha_evento").val() == "" || $('#evento').val() == "" ){
+			alert("Llenar todos los campos");
+		}else{
 		$('#aceptar,#cancelar,#tabla_comentarios').hide(200);
 		$.ajax({
-			url : 'control.insertar_comentario.inc.php',
+			url : 'captura.insertar_comentario.inc.php',
 			cache : false ,
 			type : 'POST',
-			data : 'id=<? echo $id;?>&observacion=' + $('#seguimiento').val() ,
+			data : 'c=1&id=<? echo $id;?>&observacion=' + $('#seguimiento').val() + '&fecha_evento=' + $('#fecha_evento').val() + '&evento=' + $('#evento').val() ,
 			beforeSend : function(){
 				$('#coment').html("Cargando...");
 		
@@ -487,7 +542,7 @@ function recargar(){
 
 		})
 
-
+	}
 	})
 
 

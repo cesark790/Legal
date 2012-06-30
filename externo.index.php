@@ -29,7 +29,7 @@ if(isset($_GET['close']))
 body{
 	background-image: url(img/fondo.jpg);
 	background-repeat: no-repeat;
-	behavior: url(PIE.php);
+	background-attachment: fixed;
 }
 </style>
 <body>
@@ -76,7 +76,7 @@ function ver(numero,empresa){
 		url : 'externo.buscar_resultado.php',
 		type : 'POST',
 		cache : false ,
-		data : 'no_nomina=' + numero + '&demandado=' + empresa ,
+		data : 'id_demanda=' + numero + '&demandado=' + empresa ,
 		beforeSend : function(){
 			$('#ver_detalle').html('<br><br><br> Cargando..');
 		},

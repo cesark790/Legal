@@ -1,5 +1,6 @@
 <script type="text/javascript" src="tabla/tablefilter_compressed.js"></script>
 <link rel="stylesheet" type="text/css" href="tabla/filtergrid.css">
+
 <?
 /*
  -----ID ESTATUS----
@@ -47,14 +48,14 @@ $sql_datos=mysql_query("SELECT id_demanda,id_demandado,no_nomina, fecha_inicio, 
 	while($reg=mysql_fetch_array($sql_datos)){
 		?>
 		<tr height="10px" align="center">
-			<td><? echo $reg['fecha_inicio']; ?></td>
-			<td><? echo $reg['estado']; ?></td>
-			<td><? echo $reg['expediente']; ?></td>
-			<td><? echo $reg['actor']; ?></td>
-			<td><? echo $reg['demandado']; ?></td>
-			<td><? echo $reg['abogado_externo']; ?></td>
+			<td><? echo utf8_encode($reg['fecha_inicio']); ?></td>
+			<td><? echo utf8_encode($reg['estado']); ?></td>
+			<td><? echo utf8_encode($reg['expediente']); ?></td>
+			<td><? echo utf8_encode($reg['actor']); ?></td>
+			<td><? echo utf8_encode($reg['demandado']); ?></td>
+			<td><? echo utf8_encode($reg['abogado_externo']); ?></td>
 			<td title="<? echo utf8_encode($reg['observacion']);?>" style="cursor:pointer;" onclick="comentarios(<?echo $reg['id_demanda']; ?>)"><? echo utf8_encode(recortar($reg['observacion'])); ?></td>
-			<td style="cursor:pointer;" onclick="junta(<?echo $reg['id_demanda']; ?>)"><? echo recortar_junta($reg['junta']); ?></td>
+			<td ><? echo recortar_junta($reg['junta']); ?></td>
 			<td>
 				<img onclick="ver(<?echo $reg['id_demanda']; ?>,<?echo $reg['id_demandado']; ?>)" align="center" style="cursor:pointer;" alt="Ver" src="img/ver.png" width="25" height="25"></td>
 		</tr>
@@ -99,14 +100,14 @@ $sql=mysql_query("SELECT id_demanda,id_demandado,no_nomina, fecha_inicio, fecha_
 	while($reg=mysql_fetch_array($sql)){
 		?>
 		<tr height="10px" align="center">
-			<td><? echo $reg['fecha_inicio']; ?></td>
-			<td><? echo $reg['estado']; ?></td>
-			<td><? echo $reg['expediente']; ?></td>
-			<td><? echo $reg['actor']; ?></td>
-			<td><? echo $reg['demandado']; ?></td>
-			<td><? echo $reg['abogado_externo']; ?></td>
+			<td><? echo utf8_encode($reg['fecha_inicio']); ?></td>
+			<td><? echo utf8_encode($reg['estado']); ?></td>
+			<td><? echo utf8_encode($reg['expediente']); ?></td>
+			<td><? echo utf8_encode($reg['actor']); ?></td>
+			<td><? echo utf8_encode($reg['demandado']); ?></td>
+			<td><? echo utf8_encode($reg['abogado_externo']); ?></td>
 			<td title="<? echo utf8_encode($reg['observacion']);?>" style="cursor:pointer;" onclick="comentarios(<?echo $reg['id_demanda']; ?>)"><? echo utf8_encode(recortar($reg['observacion'])); ?></td>
-			<td style="cursor:pointer;" onclick="junta(<?echo $reg['id_demanda']; ?>)"><? echo recortar_junta($reg['junta']); ?></td>
+			<td ><? echo recortar_junta($reg['junta']); ?></td>
 			<td>
 				<img onclick="ver(<?echo $reg['id_demanda']; ?>,<?echo $reg['id_demandado']; ?>)" align="center" style="cursor:pointer;" alt="Ver" src="img/ver.png" width="25" height="25"></td>
 		</tr>
@@ -149,12 +150,12 @@ var filtro = 2;
 	while($reg=mysql_fetch_array($sql)){
 		?>
 		<tr height="10px" align="center">
-			<td><? echo $reg['fecha_inicio']; ?></td>
-			<td><? echo $reg['estado']; ?></td>
-			<td><? echo $reg['expediente']; ?></td>
-			<td><? echo $reg['actor']; ?></td>
-			<td><? echo $reg['demandado']; ?></td>
-			<td><? echo $reg['abogado_externo']; ?></td>
+			<td><? echo utf8_encode($reg['fecha_inicio']); ?></td>
+			<td><? echo utf8_encode($reg['estado']); ?></td>
+			<td><? echo utf8_encode($reg['expediente']); ?></td>
+			<td><? echo utf8_encode($reg['actor']); ?></td>
+			<td><? echo utf8_encode($reg['demandado']); ?></td>
+			<td><? echo utf8_encode($reg['abogado_externo']); ?></td>
 			<td title="<? echo utf8_encode($reg['observacion']);?>" style="cursor:pointer;" onclick="comentarios(<?echo $reg['id_demanda']; ?>)"><? echo utf8_encode(recortar($reg['observacion'])); ?></td>
 			<td style="cursor:pointer;" onclick="junta(<?echo $reg['id_demanda']; ?>)"><? echo recortar_junta($reg['junta']); ?></td>
 			<td>
@@ -186,7 +187,7 @@ var props = {
 		alternate_rows: true,
 		rows_counter: true,
 		btn_reset: true,
-		btn_reset_text: "Monstrar todo",
+		btn_reset_text: "Mostrar todo",
 		loader: true,		 
         loader_html: '<h4 style="color:red;">Cargando, por favor espere...</h4>',
 		status_bar: true,
